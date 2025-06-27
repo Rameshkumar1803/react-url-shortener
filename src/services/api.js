@@ -16,7 +16,7 @@ export async function shortenURL(urls) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "AUTH_TOKEN"
+        Authorization: AUTH_TOKEN
       },
       body: JSON.stringify({ urls }),
     });
