@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ShortenerPage from './pages/ShortenerPage';
+import StatisticsPage from './pages/StatisticsPage';
+import { Container, AppBar, Toolbar, Typography } from '@mui/material';
+import Log from './middleware/logger';
 
 function App() {
+  React.useEffect(() => {
+    Log("frontend", "debug", "component", "App loaded and routes initialized");
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">URL Shortener</Typography>
+        </Toolbar>
+      </AppBar>
+      <Container sx={{ mt: 4 }}>
+        <Routes>
+          <Route path="/" element={<ShortenerPage />} />
+          <Route path="/stats" element={<StatisticsPage />} />
+        </Routes>
+      </Container>
+    </Router>
   );
 }
 
